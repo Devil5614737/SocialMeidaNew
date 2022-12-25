@@ -26,7 +26,8 @@ function Login() {
     } catch (error) {
       setLoading(false)
       // toast.error(error)
-      alert(error)
+    
+      alert(error.response.data)
     
     }
   };

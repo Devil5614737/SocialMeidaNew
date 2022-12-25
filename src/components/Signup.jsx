@@ -26,7 +26,7 @@ export const Signup = ({ setActiveSignup }) => {
     } catch (error) {
       // toast.error(error)
       setLoading(false);
-      alert(error);
+      alert(error.response.data);
     }
   };
 
