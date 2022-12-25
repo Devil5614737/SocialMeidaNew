@@ -4,7 +4,7 @@ const API_KEY = "0ed476327e4444e792543bbb41e45210";
 
 const NEWS_URL = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`;
 
-const BACKEND_API = "http://localhost:4000/api";
+const BACKEND_API = "https://social-media-jv22.onrender.com/api";
 
 const headers = {
   "x-auth-token": localStorage.getItem("token"),
