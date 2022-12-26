@@ -1,22 +1,28 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { addFriend, removeFriend } from "../api/request";
 import { AuthContext } from "../context/AuthContext";
 import { ThemeContext } from "../context/ThemeContext";
 import { addFriendClass2, viewProfileBtnClass } from "../helpers/tailwindClasses";
 import { isFriend } from "../helpers/userLogics";
+import { Spinner } from "./Spinner";
 
 export const User = ({ user }) => {
   const { darkMode } = useContext(ThemeContext);
   const { setFetchOtherUsersAgain, currentUser } = useContext(AuthContext);
+  const[loading,setLoading]=useState(false)
 
   const addAFriend = async () => {
+    setLoading(true);
     setFetchOtherUsersAgain(true);
-    await addFriend(user?._id);
+    const {data}=await addFriend(user?._id);
+    data && setLoading(false)
   };
   const removeAFriend = async () => {
+    setLoading(true)
     setFetchOtherUsersAgain(true);
-    await removeFriend(user?._id);
+    const {data}=await removeFriend(user?._id);
+    data && setLoading(false)
   };
 
   return (
@@ -51,7 +57,9 @@ export const User = ({ user }) => {
               href="#"
               className={addFriendClass2()}
             >
-              Add friend
+              {loading?<Spinner/>:
+              "Add friend"
+              }
             </a>
           ) : (
             <a
@@ -59,7 +67,9 @@ export const User = ({ user }) => {
               className={addFriendClass2()}
               onClick={removeAFriend}
             >
-              Remove friend
+                {loading?<Spinner/>:
+              "Remove friend"
+              }
             </a>
           )}
           <Link

@@ -20,7 +20,7 @@ export const PostBox = () => {
   const [openDropBox, setOpenDropBox] = useState(false);
   const [file, setFile] = useState(null);
   const [caption,setCaption]=useState("");
-  const {url}=useCloudinary(file)
+  const {url,loading:imgUploading}=useCloudinary(file)
   const[loading,setLoading]=useState(false)
 
 
@@ -63,7 +63,7 @@ export const PostBox = () => {
             background:darkMode?"#303030":"#F6F7F8",
             color:darkMode?"#fff":"#111",
           }}
-            className="w-full bg-[] p-3 py-4 text-2xl focus:outline-none rounded-lg"
+            className="w-full  p-3 py-4 text-2xl focus:outline-none rounded-lg"
             type="text"
             placeholder="What's happening?"
             value={caption}
@@ -73,11 +73,16 @@ export const PostBox = () => {
       </header>
       <div className=" mt-6">
         {openDropBox && (
-          <div className="border-2 border-gray-300 border-dotted w-full h-[20rem] mb-8 grid place-content-center">
+          <div className="border-2 border-gray-300 border-dotted w-full h-[20rem] mb-8 grid place-content-center relative">
             <FileUploader hoverTitle='drop here' id='input' handleChange={handleChange} name="file" types={fileTypes} />
             {file&&
             <p className="text-center text-2xl mt-4">{file?.name}</p>
             }
+            <div className="absolute right-10 top-5">
+              {imgUploading&&
+              <Spinner/>
+              }
+            </div>
           </div>
         )}
         <div className="flex">
