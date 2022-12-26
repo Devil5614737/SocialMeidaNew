@@ -175,7 +175,7 @@ try {
             :  
             <>
             <HeartIconFilled color="red" className="w-8 h-8" />
-            <p className="text-2xl ">Like</p>
+            <p className="text-2xl ">UnLike</p>
             </>
             
             }
