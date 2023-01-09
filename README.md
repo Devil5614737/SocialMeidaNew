@@ -38,18 +38,15 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installation
 
 1. Clone the repository
-
 ```bash
 git clone https://github.com/[USERNAME]/fullstack-social-media-app.git
 
 2. Install the dependencies
-
 ```bash
 cd fullstack-social-media-app
 npm install
 
 3. Start the development server
-
 ```bash
 npm run dev
 
